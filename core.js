@@ -63,7 +63,7 @@ app.use('/users', usersRoute)
 app.use('/farmers', farmersRoute)
 
 
-const dbURL = 'mongodb://localhost:27017/farmers_management_DB'
+const dbURL = 'mongodb+srv://engraya:28624747@nodeblog.zjtjz1e.mongodb.net/?retryWrites=true&w=majority'
 
 mongoose.connect(dbURL, { family : 4}, { useNewUrlParser: true, useUnifiedTopology: true  } )
     .then(() => console.log('Successfully Connected to Database...'))

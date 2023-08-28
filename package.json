@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node core.js",
-    "dev": "nodemon core.js"
+    "start": "node init && node core.js",
+    "dev": "node init && nodemon core.js"
   },
   "keywords": [],
   "author": "",
