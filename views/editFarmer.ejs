@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 mx-auto mt-5">
+            <div class="card shadow">
+                <div class="card header bg-success">
+                    <h4 class="text-light mx-auto mt-1">Update Farmer <%= farmer.name %></h4>
+                </div>
+                <div class="card-body p-4">
+                    <form action="<%= farmer._id %>" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1" class="form-label mt-1">Name</label>
+                          <input type="text" class="form-control" id="exampleInputEmail1" name="name" value=" <%= farmer.name %>" placeholder="Enter Farmers Name ">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="form-label mt-1">Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="email" value=" <%= farmer.email %>" placeholder="Enter Farmers Email">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1" class="form-label mt-1">Phone Number</label>
+                            <input type="tel" class="form-control" id="exampleInputEmail1" name="phone"  value="<%= farmer.phone %>" placeholder="Enter Farmers Phone Number">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1" class="form-label mt-1">Age</label>
+                            <input type="number" class="form-control" id="exampleInputEmail1" name="age" value=" <%= farmer.age %>" placeholder="Enter Farmers Age">
+                          </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1" class="form-label mt-1">State</label>
+                          <input type="text" class="form-control" id="exampleInputPassword1" name="state" placeholder="Enter Farmers State">
+                        </div>
+                        <div class="form-group">
+                          <label for="formFile" class="form-label mt-1">Image</label>
+                          <input class="form-control" type="file" name="image" id="formFile">
+                          <img src="/ <%= farmer.image %>" width="100" class="img-thumbnail mt-1">
+                          <input type="hidden" name="old_image" value=" <%= farmer.image %>">
+                        </div>
+                        <div class="d-grid">
+                            <button class="btn btn-lg btn-success mt-3" type="submit">Update</button>
+                          </div>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

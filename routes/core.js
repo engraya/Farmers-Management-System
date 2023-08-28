@@ -10,7 +10,6 @@ router.get('/', (request, response) => {
     response.render('core')
 })
 
-
 // Dashboard
 router.get('/main', ensureAuthenticated, (request, response) =>
   response.render('main', {

@@ -1,0 +1,52 @@
+<div class="container  mx-auto mt-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <% if (message) { %>
+             <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close">
+                </button>
+                <strong><%= message.message %></strong>
+             </div>
+            <% } %>
+            <div class="table-responsive">
+                <% if (farmers != '') { %>
+                    <table class="table table-hover">
+                        <thead>
+                          <tr class="table-primary">
+                            <th scope="col">ID</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">State</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <% farmers.forEach(farmer => { %>
+                                <tr class="table-light">
+                                    <td><%= farmer.id %></td>
+                                    <td><img src="<%= farmer.image %>" width="50" class="rounded-circle"></td>
+                                    <td><%= farmer.name %></td>
+                                    <td><%= farmer.phone %></td>
+                                    <td><%= farmer.email %></td>
+                                    <td><%= farmer.age %></td>
+                                    <td><%= farmer.state %></td>
+                                    <td>
+                                        <a href="/farmers/update/<%= farmer._id %>" class="text-success"><i class="fa fa-edit fa-lg mx-1"></i></a>
+                                        <a href="/farmers/delete/ <%= farmer._id %>" class="text-danger"><i class="fa fa-trash fa-lg mx-1"></i></a>
+                                    </td>
+                                  </tr>
+                            <% }) %>
+        
+                        </tbody>
+                      </table>
+                <% } else {  %>
+                    <h2 class="text-center text-danger mt-5">No Farmers Found in the Database</h2>
+                    <% } %>
+
+            </div>
+        </div>
+    </div>
+</div>
