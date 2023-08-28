@@ -11,8 +11,8 @@ router.get('/', (request, response) => {
 })
 
 // Dashboard
-router.get('/main', ensureAuthenticated, (request, response) =>
-  response.render('main', {
+router.get('/dashboard', ensureAuthenticated, (request, response) =>
+  response.render('farmersDashboard', {
     userName: request.user.name
   })
 );

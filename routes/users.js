@@ -90,7 +90,7 @@ router.post('/register', (request, response) =>{
 // Login
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
-      successRedirect: '/main',
+      successRedirect: '/farmers/dashboard',
       failureRedirect: '/users/login',
       failureFlash: true
     })(req, res, next);

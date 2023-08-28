@@ -18,8 +18,9 @@ require('./config/passport')(passport);
 // EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname,"uploads")));
+app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(bodyParser.urlencoded({ extended : false }));
+
 
 
 // Express session

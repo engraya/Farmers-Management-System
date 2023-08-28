@@ -1,52 +1,130 @@
-<div class="container  mx-auto mt-5">
-    <div class="row">
-        <div class="col-lg-12">
-            <% if (message) { %>
-             <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
-                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close">
-                </button>
-                <strong><%= message.message %></strong>
-             </div>
-            <% } %>
-            <div class="table-responsive">
-                <% if (farmers != '') { %>
-                    <table class="table table-hover">
-                        <thead>
-                          <tr class="table-primary">
-                            <th scope="col">ID</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Phone Number</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Age</th>
-                            <th scope="col">State</th>
-                            <th scope="col">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            <% farmers.forEach(farmer => { %>
-                                <tr class="table-light">
-                                    <td><%= farmer.id %></td>
-                                    <td><img src="<%= farmer.image %>" width="50" class="rounded-circle"></td>
-                                    <td><%= farmer.name %></td>
-                                    <td><%= farmer.phone %></td>
-                                    <td><%= farmer.email %></td>
-                                    <td><%= farmer.age %></td>
-                                    <td><%= farmer.state %></td>
-                                    <td>
-                                        <a href="/farmers/update/<%= farmer._id %>" class="text-success"><i class="fa fa-edit fa-lg mx-1"></i></a>
-                                        <a href="/farmers/delete/ <%= farmer._id %>" class="text-danger"><i class="fa fa-trash fa-lg mx-1"></i></a>
-                                    </td>
-                                  </tr>
-                            <% }) %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="
+    https://cdn.jsdelivr.net/npm/bootswatch@5.3.1/dist/solar/bootstrap.min.css "rel="stylesheet">
+    <title>Farmers Management System</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/farmers/dashboard">Farmers Management System</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="/farmers/dashboard">Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/farmers/dashboard">All Farmers</a>
+              </li>
+              <li>
+                <a  class="btn btn-success mx-3" href="/farmers/add">Add Farmer</a>
+              </li>
+            </ul>
         
-                        </tbody>
-                      </table>
-                <% } else {  %>
-                    <h2 class="text-center text-danger mt-5">No Farmers Found in the Database</h2>
-                    <% } %>
-
+    
+          
+          </div>
+          <p class="active text-light text-center">Welcome <%= username %></p>
+          <a href="/users/logout" class="btn btn-danger mx-3">Logout</a>
+       
+        </div>
+      </nav>
+      <div class="container  mx-auto mt-3">
+        <div class="row">
+            <div class="container  mx-auto mt-5">
+                <form class="d-flex" action="/farmers/dashboard" method="GET">
+                    <input class="form-control me-sm-2" type="text" name="name" value="<%= searchOptions.title %>" placeholder="Search Farmer">
+                    <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+            </div>
+    
+            <div class="col-lg-12 mt-3">
+                <% if (message) { %>
+                 <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close">
+                    </button>
+                    <strong><%= message.message %></strong>
+                 </div>
+                <% } %>
+                <div class="table-responsive">
+                    <% if (farmers != '') { %>
+                        <table class="table table-hover">
+                            <thead>
+                              <tr class="table-success">
+                                <th scope="col">ID</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Phone Number</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">State</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <% farmers.forEach(farmer => { %>
+                                    <tr class="table-light">
+                                        <td><%= farmer.id %></td>
+                                        <td><img src="/uploads/<%= farmer.image %>" width="50" class="rounded-circle"></td>
+                                        <td><%= farmer.name %></td>
+                                        <td><%= farmer.phone %></td>
+                                        <td><%= farmer.email %></td>
+                                        <td><%= farmer.age %></td>
+                                        <td><%= farmer.state %></td>
+                                        <td>
+                                            <a href="/farmers/update/<%= farmer._id %>" class="text-success"><i class="fa fa-edit fa-lg mx-1"></i></a>
+                                            <a href="/farmers/delete/ <%= farmer._id %>" class="text-danger"><i class="fa fa-trash fa-lg mx-1"></i></a>
+                                            <a href="#" class="text-primary"><i class="fa fa-star fa-lg mx-1"></i></a>
+                                        </td>
+                                      </tr>
+                                <% }) %>
+            
+                            </tbody>
+                          </table>
+                          <div>
+                            <ul class="pagination justify-content-center" style="margin:20px 0">
+                              <li class="page-item active">
+                                <a class="page-link" href="#">&laquo;</a>
+                              </li>
+                              <li class="page-item active">
+                                <a class="page-link" href="#">1</a>
+                              </li>
+                              <li class="page-item active">
+                                <a class="page-link" href="#">2</a>
+                              </li>
+                              <li class="page-item active">
+                                <a class="page-link" href="#">3</a>
+                              </li>
+                              <li class="page-item active">
+                                <a class="page-link" href="#">4</a>
+                              </li>
+                              <li class="page-item active">
+                                <a class="page-link" href="#">5</a>
+                              </li>
+                              <li class="page-item active">
+                                <a class="page-link" href="#">&raquo;</a>
+                              </li>
+                            </ul>
+                          </div>
+          
+                    <% } else {  %>
+                        <h2 class="text-center text-danger mt-5">No Farmer Data Found in the Database</h2>
+                        <% } %>
+    
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+</body>
+</html>
